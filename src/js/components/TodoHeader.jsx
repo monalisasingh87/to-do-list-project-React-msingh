@@ -1,4 +1,5 @@
 import React,{useState} from "react";
+import { fetchData } from "./fetch";
  
 const TodoHeader = ({todos, setTodos})=>{
     const [newTodo, setNewTodo] = useState("");
@@ -20,9 +21,6 @@ const TodoHeader = ({todos, setTodos})=>{
                 is_done: false
             }
 
-            const appendedArray = [...todos, newTodoObj];
-        setTodos(appendedArray);
-
         setNewTodo("");
 
         postNewTask(newTodoObj);
@@ -38,8 +36,14 @@ const TodoHeader = ({todos, setTodos})=>{
             if (response.ok){
                 const data = await response.json()
                 console.log("Here is my postNewTask data: ", data)
+                handleFetch();
             }
         }
+         async function handleFetch(){
+                    const data= await fetchData()
+                    console.log('here are my todos', data)
+                    setTodos(data)
+                }
 
     return (
         <>
