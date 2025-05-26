@@ -23,7 +23,7 @@ const TodoBody = ({ todos, setTodos }) => {
     return data;
   }
 
-  const renderTodos = todos.map((todoItem) => {
+  const renderTodos = todos?.map((todoItem) => {
     return (
       <li className="todo-item" key={todoItem.id}>
         <h4>
